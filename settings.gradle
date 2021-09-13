@@ -1,0 +1,10 @@
+rootProject.name = 'cloud-service-master'
+
+include 'service-config'
+include 'service-register'
+include 'service-gateway'
+include 'service-admin'
+include 'service-user'
+include 'service-movie'
+include 'service-showtimes'
+include 'service-booking'
