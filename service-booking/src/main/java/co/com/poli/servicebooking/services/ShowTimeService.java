@@ -10,5 +10,6 @@ public interface ShowTimeService {
     void delete(Booking booking);
     List<Booking> findAll();
     Booking findById(Long id);
+    Booking findByUserId(Long id);
 
 }

@@ -18,6 +18,5 @@ public class ShowTime {
 
     private Long Id;
     private Date date;
-    private List<ShowTimeMovie> listMovies;
 
 }

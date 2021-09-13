@@ -31,6 +31,7 @@ public class MovieController {
         if(result.hasErrors()){
             return builder.failed(this.formatMessage((result)));
         }
+       System.out.println(movie.getDirector() + ' '+ movie.getTitle() + ' '+ movie.getRating());
         movieService.save(movie);
         return builder.success(movie);
     }
@@ -38,6 +39,9 @@ public class MovieController {
     @GetMapping("/{id}")
     public Response findById(@PathVariable("id") Long id){
         Movie movie = movieService.findById(id);
+        if(movie == null){
+            return builder.failed(movie);
+        }
         return builder.success(movie);
     }
 
@@ -48,6 +52,17 @@ public class MovieController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(movies);
+    }
+
+    @DeleteMapping("/{id}")
+    public Response delete(@PathVariable("id") Long id){
+        Movie movie = movieService.findById(id);
+        if(movie == null){
+            return builder.failed(movie);
+        }else{
+            movieService.delete(movie);
+            return builder.success(movie);
+        }
     }
 
     private String formatMessage(BindingResult result){

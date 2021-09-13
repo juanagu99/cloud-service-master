@@ -36,12 +36,12 @@ public class ShowTimeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ShowTime>> findAll(){
+    public Response findAll(){
         List<ShowTime> showTime = showtimeService.findAll();
         if(showTime.isEmpty()){
-            return ResponseEntity.noContent().build();
+            return builder.failed(showTime);
         }
-        return ResponseEntity.ok(showTime);
+        return builder.success(showTime);
     }
 
     @GetMapping("/{id}")
@@ -50,6 +50,14 @@ public class ShowTimeController {
         return builder.success(showTime);
     }
 
+    @PutMapping()
+    public Response put(@Valid @RequestBody ShowTime showTime, BindingResult result){
+        if(result.hasErrors()){
+            return builder.failed(formatMessage(result));
+        }
+        showtimeService.save(showTime);
+        return builder.success(showTime);
+    }
 
     private String formatMessage(BindingResult result){
         List<Map<String,String>> errors = result.getFieldErrors().stream()

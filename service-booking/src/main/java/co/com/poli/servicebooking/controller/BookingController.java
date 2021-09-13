@@ -47,7 +47,34 @@ public class BookingController {
     @GetMapping("/{id}")
     public Response findById(@PathVariable("id") Long id){
         Booking booking = showtimeService.findById(id);
-        return builder.success(booking);
+        if (booking == null){
+            return builder.failed(booking);
+        }else{
+            return builder.success(booking);
+        }
+
+    }
+
+    @GetMapping("/user/{id}")
+    public Response findByUserId(@PathVariable("id") Long id){
+        Booking booking = showtimeService.findByUserId(id);
+        if (booking == null){
+            return builder.failed(booking);
+        }else{
+            return builder.success(booking);
+        }
+
+    }
+
+    @DeleteMapping("/{id}")
+    public Response delete(@PathVariable("id") Long id){
+        Booking booking = showtimeService.findById(id);
+        if (booking == null){
+            return builder.failed(booking);
+        }else {
+            showtimeService.delete(booking);
+            return builder.success(booking);
+        }
     }
 
 

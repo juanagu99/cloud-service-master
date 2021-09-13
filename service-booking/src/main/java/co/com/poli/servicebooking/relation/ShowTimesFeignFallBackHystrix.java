@@ -1,6 +1,5 @@
 package co.com.poli.servicebooking.relation;
 
-import co.com.poli.servicebooking.model.Movie;
 import co.com.poli.servicebooking.model.ShowTime;
 import co.com.poli.servicebooking.utils.Response;
 import co.com.poli.servicebooking.utils.ResponseBuilder;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ShowTimesFeignFallBackHystrix implements MovieFeign {
+public class ShowTimesFeignFallBackHystrix implements ShowTimeFeign {
 
     private final ResponseBuilder builder;
 
@@ -18,7 +17,7 @@ public class ShowTimesFeignFallBackHystrix implements MovieFeign {
         ShowTime showTime = ShowTime.builder()
                 .Id(null)
                 .date(null)
-                .listMovies(null).build();
+                .build();
         return  builder.success(showTime);
     }
 

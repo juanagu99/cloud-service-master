@@ -27,11 +27,9 @@ public class Movie {
     @Column(name="director",nullable = false)
     private String director;
 
-
-    @NotEmpty(message = "El nombre no puede ser vacio")
     @Column(name="rating",nullable = false)
-    @Min(1)
-    @Max(5)
+    @Min(value = 1,message = "rating debe ser mayor a cero")
+    @Max(value=5,message = "rating debe ser menor a 5")
     private Long rating;
 
     @Override

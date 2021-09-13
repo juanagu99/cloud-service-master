@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserFeignFallBackHystrix implements MovieFeign {
+public class UserFeignFallBackHystrix implements UserFeign {
 
     private final ResponseBuilder builder;
 

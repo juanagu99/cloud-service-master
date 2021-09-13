@@ -38,7 +38,22 @@ public class UserController {
     @GetMapping("/{id}")
     public Response findById(@PathVariable("id") Long id){
         User user = userService.findById(id);
-        return builder.success(user);
+        if(user == null){
+            return builder.failed(user);
+        }else {
+            return builder.success(user);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public Response delete(@PathVariable("id") Long id){
+        User user = userService.findById(id);
+        if(user == null){
+            return builder.failed(user);
+        }else{
+            userService.delete(user);
+            return builder.success(user);
+        }
     }
 
     @GetMapping
